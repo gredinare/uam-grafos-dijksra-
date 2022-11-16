@@ -1,5 +1,8 @@
+import model.Graph;
+import util.LoadData;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Graph graph = LoadData.loadFile();
     }
 }
