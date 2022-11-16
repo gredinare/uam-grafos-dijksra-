@@ -32,9 +32,8 @@ public class LoadData {
             // Quais as arestas e os seus pesos?
             List<String[]> edges = generateEdges(mList.subList(lastVertex, mList.size()));
             for(String[] edgesAndWeight : edges) {
-                mGraph.addEdge(edgesAndWeight[0], edgesAndWeight[1], Double.parseDouble(edgesAndWeight[2]));
+                mGraph.addEdge(new Vertex(edgesAndWeight[0]), new Vertex(edgesAndWeight[1]), Double.parseDouble(edgesAndWeight[2]));
             }
-
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

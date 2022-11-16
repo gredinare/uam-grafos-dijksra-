@@ -14,4 +14,24 @@ public class Vertex {
     public Vertex(String name) {
         setName(name);
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if(this.getClass() != obj.getClass()) return false;
+
+        Vertex other = (Vertex) obj;
+        if(getName() == null) {
+            return other.name == null;
+        } else return name.equals(other.name);
+    }
 }
