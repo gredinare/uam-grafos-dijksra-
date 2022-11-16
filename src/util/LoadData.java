@@ -19,7 +19,10 @@ public class LoadData {
             mGraph.setDirected(isDirected);
 
             // Qual a quantidade de vértices do grafo?
-            int numberOfVertices = Integer.parseInt(mList.get(1));
+            int numberOfVertex = Integer.parseInt(mList.get(1));
+
+            // Qual o nome dos vértices?
+            int toIndex = 2 + numberOfVertex;
 
 
         } catch (Exception e) {
