@@ -1,9 +1,11 @@
 package util;
 
 import model.Graph;
+import model.Vertex;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoadData {
@@ -19,10 +21,19 @@ public class LoadData {
             mGraph.setDirected(isDirected);
 
             // Qual a quantidade de vértices do grafo?
-            int numberOfVertex = Integer.parseInt(mList.get(1));
+            int lastVertex = Integer.parseInt(mList.get(1)) + 2;
 
             // Qual o nome dos vértices?
-            int toIndex = 2 + numberOfVertex;
+            List<String> vertices = mList.subList(2, lastVertex);
+            for(String vertexName : vertices) {
+                mGraph.addVertex(new Vertex(vertexName));
+            }
+
+            // Quais as arestas e os seus pesos?
+            List<String[]> edges = generateEdges(mList.subList(lastVertex, mList.size()));
+            for(String[] edgesAndWeight : edges) {
+                mGraph.addEdge(edgesAndWeight[0], edgesAndWeight[1], Double.parseDouble(edgesAndWeight[2]));
+            }
 
 
         } catch (Exception e) {
@@ -30,5 +41,16 @@ public class LoadData {
         }
 
         return mGraph;
+    }
+
+    private static List<String[]> generateEdges(List<String> edgesAndWeights) {
+        List<String[]> edgeList = new ArrayList<>();
+
+        for (String edgesAndWeight : edgesAndWeights) {
+            String[] edge = edgesAndWeight.split(",");
+            edgeList.add(edge);
+        }
+
+        return edgeList;
     }
 }

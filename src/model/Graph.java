@@ -37,4 +37,8 @@ public class Graph {
         }
     }
 
+    public void addEdge(String vertexFrom, String vertexTo, double weight) {
+
+    }
+
 }
