@@ -1,23 +1,22 @@
 package view;
 
+import model.Dijkstra;
 import model.Edge;
 import model.Graph;
 import model.Vertex;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ConsoleInterface {
     private Graph graph;
-    private String pattern = "%10s |";
 
     public ConsoleInterface(Graph graph) {
         this.graph = graph;
     }
 
     public void printTableGraph() {
-        List<Vertex> mList = new ArrayList<Vertex>(graph.getVertexList().keySet());
+        List<Vertex> mList = new ArrayList<>(graph.getVertices().keySet());;
 
         // Imprimir colunas com o nome dos vértices
         printFirstLine(mList);
@@ -25,22 +24,30 @@ public class ConsoleInterface {
         // Imprimir linhas restantes do grafo
 
         for(Vertex vertex : mList) {
-            printLine(vertex, mList, graph.getVertexList().get(vertex));
+            printLine(vertex, mList, graph.getVertices().get(vertex));
             System.out.println();
         }
 
+        System.out.println();
+
+    }
+
+    public void runDijkstra() {
+        System.out.println("=== Dijkstra ===");
+        Dijkstra dijkstra = new Dijkstra(graph);
+        dijkstra.calculateShortestPath(graph.getVertex("A"));
     }
 
     private void printFirstLine(List<Vertex> listVertices) {
-        System.out.print(String.format(pattern, ""));
+        printCell("");
         for (Vertex vertex : listVertices) {
-            System.out.print(String.format(pattern, vertex.getName()));
+            printCell(vertex.getName());
         }
         System.out.println();
     }
 
     private void printLine(Vertex vertex, List<Vertex> listVertices, List<Edge> listEdges) {
-        System.out.print(String.format(pattern, vertex.getName()));
+        printCell(vertex.getName());
 
         for(Vertex vertexEdge: listVertices) {
             double out = 0;
@@ -49,7 +56,12 @@ public class ConsoleInterface {
                     out = edge.getWeight();
                 }
             }
-            System.out.print(String.format(pattern, out));
+            printCell("" + out);
         }
+    }
+
+    private void printCell(String str) {
+        String pattern = "%5s |";
+        System.out.printf(pattern, str);
     }
 }

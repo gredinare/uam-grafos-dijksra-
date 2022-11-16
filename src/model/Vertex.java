@@ -1,5 +1,5 @@
 package model;
-;
+
 public class Vertex {
     private String name;
 
@@ -30,7 +30,7 @@ public class Vertex {
         if(this.getClass() != obj.getClass()) return false;
 
         Vertex other = (Vertex) obj;
-        if(getName() == null) {
+        if(this.getName() == null) {
             return other.name == null;
         } else return name.equals(other.name);
     }
