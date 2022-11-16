@@ -18,6 +18,10 @@ public class LoadData {
             boolean isDirected = mList.get(0).contains("S");
             mGraph.setDirected(isDirected);
 
+            // Qual a quantidade de vértices do grafo?
+            int numberOfVertices = Integer.parseInt(mList.get(1));
+
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
