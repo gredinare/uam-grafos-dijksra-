@@ -42,7 +42,7 @@ public class Graph {
     public void addEdge(Vertex vertexFrom, Vertex vertexTo, double weight) {
         vertices.get(vertexFrom).add(new Edge(vertexTo, weight));
 
-        if(!isDirected) {
+        if(!isDirected()) {
             vertices.get(vertexTo).add(new Edge(vertexFrom, weight));
         }
     }

@@ -2,6 +2,7 @@ package model;
 
 public class Vertex {
     private String name;
+    private Vertex daddy = null;
 
     public void setName(String name) {
         this.name = name;
@@ -9,6 +10,14 @@ public class Vertex {
 
     public String getName() {
         return this.name;
+    }
+
+    public Vertex getDaddy() {
+        return daddy;
+    }
+
+    public void setDaddy(Vertex daddy) {
+        this.daddy = daddy;
     }
 
     public Vertex(String name) {
